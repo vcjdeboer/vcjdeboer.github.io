@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vincent de Boer</title>
+<meta name="description" content="Vincent de Boer — lab-automation and PyLabRobot researcher. Making scientific work travel like a record: recorded, sealed, replayable.">
+<meta name="author" content="Vincent de Boer">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Vincent de Boer">
+<meta property="og:description" content="Lab automation & PyLabRobot. Making scientific work travel like a record.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --paper:#faf6ee;--paper-deep:#f2ebdd;--ink:#211d18;--ink-soft:#4a4238;--ink-faint:#7c7263;
+    --rule:#ddd2bd;--accent:#b3541e;--accent-deep:#8a3f14;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper:#17151a;--paper-deep:#1f1c22;--ink:#eae3d6;--ink-soft:#c3b8a8;--ink-faint:#8b8172;
+      --rule:#35303a;--accent:#e08a4e;--accent-deep:#f0a468;
+    }
+  }
+  :root[data-theme="light"]{--paper:#faf6ee;--paper-deep:#f2ebdd;--ink:#211d18;--ink-soft:#4a4238;--ink-faint:#7c7263;--rule:#ddd2bd;--accent:#b3541e;--accent-deep:#8a3f14;}
+  :root[data-theme="dark"]{--paper:#17151a;--paper-deep:#1f1c22;--ink:#eae3d6;--ink-soft:#c3b8a8;--ink-faint:#8b8172;--rule:#35303a;--accent:#e08a4e;--accent-deep:#f0a468;}
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font-family:"Newsreader",Georgia,serif; font-optical-sizing:auto;
+    font-size:1.24rem; line-height:1.65; -webkit-font-smoothing:antialiased;
+    min-height:100vh; display:flex; flex-direction:column;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+    background:
+      radial-gradient(circle at 15% 10%, rgba(179,84,30,.04), transparent 42%),
+      radial-gradient(circle at 85% 88%, rgba(179,84,30,.03), transparent 45%);
+  }
+  main{position:relative;z-index:1;max-width:40rem;margin:0 auto;padding:0 1.5rem;width:100%;}
+
+  header.hero{ padding:5rem 0 1rem; text-align:center; }
+  .record{ width:82px;height:82px;margin:0 auto 1.8rem;display:block; }
+  .record .disc{fill:var(--ink);} .record .groove{fill:none;stroke:var(--ink-faint);opacity:.5;}
+  .record .label{fill:var(--accent);} .record .hole{fill:var(--paper);}
+  @media (prefers-reduced-motion: no-preference){
+    .record.spin{animation:spin 16s linear infinite;} @keyframes spin{to{transform:rotate(360deg);}}
+  }
+  h1{
+    font-family:"Fraunces",serif;font-weight:500;font-optical-sizing:auto;
+    font-size:clamp(1.9rem,6vw,2.6rem);line-height:1.05;letter-spacing:.005em;margin:0 0 1rem;
+    color:var(--ink-soft);
+  }
+  .tagline{
+    font-family:"Newsreader",serif;font-style:italic;color:var(--ink);
+    font-size:1.35rem;line-height:1.45;max-width:30rem;margin:0 auto;font-weight:400;
+  }
+  .tagline-sub{
+    font-family:"Fraunces",serif;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--accent);margin:.9rem auto 0;font-weight:500;
+  }
+
+  /* ---- contact rows (like the profile card) ---- */
+  .contact{ list-style:none; margin:2.2rem auto 0; padding:0; max-width:24rem; text-align:left; }
+  .contact li{ display:flex; align-items:center; gap:.85rem; padding:.34rem 0;
+               font-size:1rem; line-height:1.3; color:var(--ink-soft); }
+  .contact li svg{ width:20px; height:20px; flex:0 0 20px; color:var(--ink-faint); }
+  .contact a{ color:var(--ink-soft); text-decoration:none;
+              background-image:linear-gradient(var(--accent),var(--accent));
+              background-position:0 100%;background-repeat:no-repeat;background-size:0% 1px;
+              transition:background-size .2s,color .2s; word-break:break-word; }
+  .contact a:hover{ color:var(--accent); background-size:100% 1px; }
+  .contact .plain{ color:var(--ink-soft); }
+
+  .hr-mark{display:flex;align-items:center;justify-content:center;gap:1rem;margin:3rem auto 2.2rem;color:var(--accent);opacity:.8;}
+  .hr-mark::before,.hr-mark::after{content:"";height:1px;width:4.5rem;background:var(--rule);}
+  .hr-mark svg{width:16px;height:16px;}
+
+  .cards{ display:grid; gap:1rem; padding-bottom:2rem; }
+  .card{
+    display:block; text-decoration:none; color:inherit;
+    background:var(--paper-deep); border:1px solid var(--rule); border-radius:12px;
+    padding:1.4rem 1.5rem; transition:border-color .2s, transform .2s;
+  }
+  .card:hover{ border-color:var(--accent); transform:translateY(-2px); }
+  .card .eyebrow{
+    font-family:"Fraunces",serif;font-weight:600;font-size:.72rem;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--accent);display:block;margin-bottom:.35rem;
+  }
+  .card .title{ font-family:"Fraunces",serif;font-weight:600;font-size:1.5rem;line-height:1.1;display:block;margin-bottom:.3rem;color:var(--ink); }
+  .card .desc{ color:var(--ink-soft);font-size:1.02rem;line-height:1.5; }
+  .card .url{ font-family:"JetBrains Mono",monospace;font-size:.72rem;color:var(--ink-faint);display:block;margin-top:.6rem; }
+
+  footer{
+    margin-top:auto; text-align:center; padding:3rem 0 4rem; position:relative; z-index:1;
+    font-family:"Fraunces",serif;font-size:.82rem;letter-spacing:.06em;color:var(--ink-faint);
+  }
+  footer a{ color:var(--ink-faint); }
+</style>
+</head>
+<body>
+
+<main>
+  <header class="hero">
+    <svg class="record spin" viewBox="0 0 120 120" role="img" aria-label="A spinning vinyl record">
+      <circle class="disc" cx="60" cy="60" r="58"/>
+      <circle class="groove" cx="60" cy="60" r="50" stroke-width="1"/>
+      <circle class="groove" cx="60" cy="60" r="44" stroke-width="1"/>
+      <circle class="groove" cx="60" cy="60" r="38" stroke-width="1"/>
+      <circle class="groove" cx="60" cy="60" r="32" stroke-width="1"/>
+      <circle class="label" cx="60" cy="60" r="20"/>
+      <circle class="hole"  cx="60" cy="60" r="3.2"/>
+    </svg>
+    <h1>Vincent de Boer</h1>
+    <p class="tagline">Recipes for restless robots, receipts for challenged mitochondria, regressions for noisy physiology.</p>
+
+    <ul class="contact">
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 9h.01M9 13h.01M9 17h.01M15 9h.01M15 13h.01M15 17h.01"/></svg>
+        <span class="plain">Wageningen University</span>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+        <span class="plain">Wageningen, NL</span>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C9.4 6 6.4 8 4 8.5c-2 .5-2 2.4-1 4.5s2.6 3 4.5 2c1.6-.9 3.3-2.9 4.5-4.9 1.2 2 2.9 4 4.5 4.9 1.9 1 3.5-.5 4.5-2s1-4-1-4.5C17.6 8 14.6 6 12 2z"/></svg>
+        <a href="https://bsky.app/profile/vcjdeboer.bsky.social">@vcjdeboer.bsky.social</a>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 0 5 8.5a2.5 2.5 0 0 0-.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.75V21H21.4v-5.9c0-1.4-.03-3.2-2-3.2-2 0-2.3 1.5-2.3 3.1V21H9z"/></svg>
+        <a href="https://www.linkedin.com/in/vincent-cj-de-boer-22283b18">in/vincent-cj-de-boer</a>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.15-1.11-1.46-1.11-1.46-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.36 1.09 2.94.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>
+        <a href="https://github.com/vcjdeboer">github.com/vcjdeboer</a>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zM8.2 7.1a.95.95 0 1 1 0 1.9.95.95 0 0 1 0-1.9zM7.3 10.2h1.8v7.1H7.3zM11 10.2h1.72v.97h.03c.24-.44.83-.9 1.7-.9 1.82 0 2.15 1.17 2.15 2.7v3.33h-1.8v-2.95c0-.7-.01-1.6-1-1.6-1 0-1.15.77-1.15 1.56v3z"/></svg>
+        <a href="https://orcid.org/0000-0001-9928-1698">orcid.org/0000-0001-9928-1698</a>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1.5 1.5"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1.5-1.5"/></svg>
+        <a href="https://app.briefly.bio/portfolio/vincent-de-boer">briefly.bio/portfolio/vincent-de-boer</a>
+      </li>
+    </ul>
+  </header>
+
+  <div class="hr-mark" aria-hidden="true">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="3" fill="currentColor"/></svg>
+  </div>
+
+  <div class="cards">
+    <a class="card" href="https://vcjdeboer.github.io/press-play/">
+      <span class="eyebrow">Writing</span>
+      <span class="title">Press Play</span>
+      <span class="desc">Play a record twice and you hear the same thing twice. On sealing data analysis the way a studio seals a master — and the session suite that does it.</span>
+      <span class="url">vcjdeboer.github.io/press-play</span>
+    </a>
+
+    <a class="card" href="https://vcjdeboer.github.io/odyssey-plr-presentation/">
+      <span class="eyebrow">Talk · slides</span>
+      <span class="title">Odyssey Classic in PyLabRobot</span>
+      <span class="desc">A LI-COR Odyssey 9120 driven from PyLabRobot: near-infrared raster physics, a FastAPI lab app, and PIDinst identifiers stamped into every scan. PLR community meeting, 2026.</span>
+      <span class="url">vcjdeboer.github.io/odyssey-plr-presentation</span>
+    </a>
+  </div>
+</main>
+
+<footer>
+  <p>© Vincent de Boer · CC&nbsp;BY&nbsp;4.0</p>
+</footer>
+
+<script>
+  (function(){ try{ var t=localStorage.getItem('theme'); if(t) document.documentElement.setAttribute('data-theme',t);}catch(e){} })();
+</script>
+
+</body>
+</html>
